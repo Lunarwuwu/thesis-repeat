@@ -39,6 +39,10 @@ def call_deepseek(prompt: str, max_tokens: int = 1024, temperature: float = 0.0)
     ctx = ssl.create_default_context()
 
     with urllib.request.urlopen(req, context=ctx, timeout=300) as response:
+        if getattr(response, "status", 200) != 200:
+            raise urllib.error.HTTPError(
+                DEEPSEEK_API_URL, response.status, response.reason, response.headers, None
+            )
         try:
             raw_bytes = response.read()
         except http.client.IncompleteRead as e:
