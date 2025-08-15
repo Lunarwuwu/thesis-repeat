@@ -91,7 +91,7 @@ def generate_solution(problem_prompt: str, test_code: str) -> str:
 
     solution_request = (
         problem_prompt
-        + "\n\nHere are the pytest tests:\n```"
+        + "\n\nHere are the pytest tests:\n```python\n"
         + test_code
         + "```\nImplement the function so that these tests all pass."
     )
