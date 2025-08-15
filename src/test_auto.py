@@ -36,7 +36,7 @@ def call_deepseek(prompt: str, max_tokens: int = 1024, temperature: float = 0.0)
     }
     data = json.dumps(payload).encode('utf-8')
     req = urllib.request.Request(DEEPSEEK_API_URL, data=data, headers=headers, method='POST')
-    ctx = ssl._create_unverified_context()
+    ctx = ssl.create_default_context()
 
     with urllib.request.urlopen(req, context=ctx, timeout=300) as response:
         try:
