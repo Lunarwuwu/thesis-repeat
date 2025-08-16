@@ -92,6 +92,11 @@ def format_prompt(problem: Dict[str, Any]) -> str:
 
 
 def main() -> None:
+    if not DEEPSEEK_API_KEY:
+        print("Error: environment variable DEEPSEEK_API_KEY is not set. "
+              "Please export DEEPSEEK_API_KEY before running.")
+        return
+
     problems = read_problems()
     samples = []
 
