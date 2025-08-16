@@ -1,14 +1,19 @@
+"""
+A simple script to run DeepSeek on HumanEval problems.
+Includes a small helper to pull out Python code from model outputs.
+"""
 import os
 import json
 import urllib.request
 import urllib.error
 import ssl
+from typing import Dict, Any, List
 from human_eval.data import write_jsonl, read_problems
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+DEEPSEEK_API_KEY: str | None = os.getenv("DEEPSEEK_API_KEY")
 DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
-MODEL_NAME = "deepseek-chat" 
+MODEL_NAME = "deepseek-chat"
 
-def get_python_code(code):
+def get_python_code(code: str) -> str:
     code = code.replace("\r", "")
     if "```python" in code:
         code_start_idx = code.index("```python")
@@ -82,11 +87,11 @@ def generate_one_completion(prompt: str) -> str:
         return ""
 
 
-def format_prompt(problem):
+def format_prompt(problem: Dict[str, Any]) -> str:
     return f'>>> Problem:\n{problem["prompt"]}\n>>> Test Cases:\n {problem["test"]}\n>>> Code:\n```python'
 
 
-def main():
+def main() -> None:
     problems = read_problems()
     samples = []
 
