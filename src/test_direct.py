@@ -38,7 +38,7 @@ def generate_one_completion(prompt: str) -> str:
 
     data    = json.dumps(payload_dict).encode('utf-8')
     req     = urllib.request.Request(DEEPSEEK_API_URL, data=data, headers=headers, method='POST')
-    context = ssl._create_default_context() 
+    context = ssl.create_default_context()
 
     try:
         with urllib.request.urlopen(req, context=context, timeout=1000) as response:
