@@ -85,7 +85,7 @@ def generate_one_completion(prompt: str) -> str:
 
 
 def format_prompt(problem):
-    return f'>>> Problem:\n{problem["prompt"]}\n>>> Code:\n```python'
+    return f'>>> Problem:\n{problem["prompt"]}\n>>> Code:\n```python\n'
 
 
 def main():
