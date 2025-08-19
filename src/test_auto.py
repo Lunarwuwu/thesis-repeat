@@ -68,7 +68,7 @@ def call_deepseek_with_retry(prompt: str, max_tokens: int = 1024, temperature: f
 
 
 def extract_code(markdown: str) -> str:
-    for fence in ("```python", "```"):
+    for fence in ("```python", "```py", "```"):
         if fence in markdown:
             start = markdown.index(fence) + len(fence)
             end = markdown.find("```", start)
