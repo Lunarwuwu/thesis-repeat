@@ -109,9 +109,13 @@ def main():
         print(f"Processing task {task_id}:")
         try:
             test_code = generate_test_cases(prompt)
+            if not test_code.strip():
+                print("  [warn] Generated tests are empty.")
             print("Generated tests:\n", test_code)
 
             solution_code = generate_solution(prompt, test_code)
+            if not solution_code.strip():
+                    print("  [warn] Generated solution is empty.")
             print("Generated solution:\n", solution_code)
 
             samples.append({
